@@ -8,6 +8,7 @@ public class StateIdle extends State {
 
     @Override
     void doAction() {
+//        context.setCanBeRunning(true);
         context.setState(new StateListen(context));
         context.doAction();
     }

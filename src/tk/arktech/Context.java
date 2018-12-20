@@ -1,10 +1,24 @@
 package tk.arktech;
 
+import java.util.ArrayList;
+
 public class Context {
 
     private State state;
+//    private boolean canBeRunning = true;
+    protected Object memory;
 
-    public Context() {
+
+//    public boolean canBeRunning() {
+//        return canBeRunning;
+//    }
+
+//    public void setCanBeRunning(boolean canBeRunning) {
+//        this.canBeRunning = canBeRunning;
+//    }
+
+    public Context(Object memory) {
+        this.memory = memory;
     }
 
     public State getState() {

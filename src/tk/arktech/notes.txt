@@ -1,0 +1,11 @@
+Program startuje
+2. uruchamia się tcp listener
+3.tworzą się łańcuchy odpowiedzialności i maszyna stanów
+
+Przychodzi komenda
+1. wywoływany jest łańcuch odpowiedzialności 1
+2. wywoływana jest odpowiednia operacja
+
+Przychodzą dane z programu
+1. wywoływany jest łańcuch odpowiedzialności
+2. wywoływana jest metoda send()

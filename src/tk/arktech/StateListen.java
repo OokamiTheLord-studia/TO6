@@ -7,6 +7,8 @@ import org.jnativehook.keyboard.NativeKeyListener;
 import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StateListen extends State {
 
@@ -14,6 +16,7 @@ public class StateListen extends State {
     private NativeKeyListener keyListener;
     BlockingQueue<String> queue;
     CharBuffer buf;
+    private int mynumber;
 
 
     public StateListen(Context context) {
@@ -29,13 +32,21 @@ public class StateListen extends State {
                 ArrayList<Object> arr = (ArrayList<Object>) context.memory;
                 queue = (BlockingQueue<String>) arr.get(0);
                 buf = (CharBuffer) arr.get(1);
+                mynumber = (int) arr.get(2);
+
+                // Get the logger for "org.jnativehook" and set the level to off.
+                Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+                logger.setLevel(Level.OFF);
+
+                // Don't forget to disable the parent handlers.
+                logger.setUseParentHandlers(false);
 
                 try {
                     GlobalScreen.registerNativeHook();
                 } catch (NativeHookException e) {
                     e.printStackTrace();
                 }
-                keyListener = new KeyListener(queue, buf);
+                keyListener = new KeyListener(queue, buf, mynumber);
                 GlobalScreen.addNativeKeyListener(keyListener);
 
 
@@ -54,7 +65,7 @@ public class StateListen extends State {
 
             try {
                 buf.rewind();
-                queue.put(2 + buf.toString());
+                queue.put(mynumber + buf.toString());
 //                queue.put("2" + buf.)
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -10,10 +10,12 @@ public class KeyListener implements NativeKeyListener {
 
     private final BlockingQueue<String> queue;
     private CharBuffer buf;
+    private final int mynumber;
 
-    public KeyListener(BlockingQueue<String> queue, CharBuffer buf) {
+    public KeyListener(BlockingQueue<String> queue, CharBuffer buf, int mynumber) {
         this.queue = queue;
         this.buf = buf;
+        this.mynumber = mynumber;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class KeyListener implements NativeKeyListener {
         {
             try {
                 buf.rewind();
-                queue.put(2 + buf.toString());
+                queue.put(mynumber + buf.toString());
             } catch (InterruptedException e) {
                 //TODO: Errorhandling
                 e.printStackTrace();
@@ -36,7 +38,9 @@ public class KeyListener implements NativeKeyListener {
         }
 
 //        buf.put(nativeKeyEvent.getKeyChar());
-        buf.put(NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()));
+        var data = NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode());
+        data = data.replace("Enter", "\n");
+        buf.put(data);
     }
 
     @Override

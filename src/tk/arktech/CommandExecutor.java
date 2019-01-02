@@ -3,7 +3,7 @@ package tk.arktech;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class CommandExecutor extends Chain implements Addable<CommandExecutor>{
+public class CommandExecutor extends ChainConnectable{
 
     private final Runnable action;
     private final String command;
@@ -25,10 +25,6 @@ public CommandExecutor(Runnable action, String command, Runnable illegalCommandA
         this.illegalCommandAction = illegalCommandAction;
     }
 
-    public CommandExecutor add(CommandExecutor p) {
-        next = p;
-        return p;
-    }
 
     @Override
     public void handle(String st) {

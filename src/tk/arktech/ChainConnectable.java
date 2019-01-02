@@ -12,4 +12,9 @@ public abstract class ChainConnectable extends Chain implements Addable<ChainCon
         return p;
     }
 
+    public void addEnd(Chain p)
+    {
+        this.next = p;
+    }
+
 }

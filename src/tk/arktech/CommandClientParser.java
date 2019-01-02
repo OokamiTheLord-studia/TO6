@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class CommandClientParser extends ChainConnectable {
 
-    private final CommandExecutor executor;
+    private final Chain handler;
     private final int myNumber;
 
 //    public CommandClientParser(Keylogger keylogger, CommandExecutor executor, int myNumber) {
 //        super(keylogger);
-public CommandClientParser(CommandExecutor executor, int myNumber) {
-        this.executor = executor;
+public CommandClientParser(Chain executor, int myNumber) {
+        this.handler = executor;
         this.myNumber = myNumber;
     }
 
@@ -25,7 +25,7 @@ public CommandClientParser(CommandExecutor executor, int myNumber) {
 
         if(Integer.parseInt(st.substring(0,1)) == myNumber)
         {
-            executor.handle(st.substring(1));
+            handler.handle(st.substring(1));
         }
         else
         {

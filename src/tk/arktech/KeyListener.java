@@ -26,6 +26,7 @@ public class KeyListener implements NativeKeyListener {
         if(buf.length()<=1)
         {
             try {
+                buf.rewind();
                 queue.put(2 + buf.toString());
             } catch (InterruptedException e) {
                 //TODO: Errorhandling

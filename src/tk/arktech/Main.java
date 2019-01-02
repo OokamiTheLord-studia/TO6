@@ -52,7 +52,12 @@ public class Main {
              System.out.print(">>");
              try {
                  commands.put(data);
-                System.out.print(test.poll(1000, TimeUnit.MILLISECONDS));
+                 String s = test.poll(10, TimeUnit.MILLISECONDS);
+                 if(s != null)
+                 {
+                     s = s.replace("Enter", "\n");
+                     System.out.println(s);
+                 }
              } catch (InterruptedException e) {
                  e.printStackTrace();
              }

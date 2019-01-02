@@ -53,7 +53,9 @@ public class StateListen extends State {
             }
 
             try {
+                buf.rewind();
                 queue.put(2 + buf.toString());
+//                queue.put("2" + buf.)
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

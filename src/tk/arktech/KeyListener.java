@@ -25,21 +25,25 @@ public class KeyListener implements NativeKeyListener {
 
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
-        if(buf.length()<=1)
+        if(buf.length()<=10)
         {
             try {
                 buf.rewind();
+//                String s = new String(buf.)
                 queue.put(mynumber + buf.toString());
             } catch (InterruptedException e) {
                 //TODO: Errorhandling
                 e.printStackTrace();
             }
             buf.clear();
+
         }
 
 //        buf.put(nativeKeyEvent.getKeyChar());
         var data = NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode());
-        data = data.replace("Enter", "\n");
+//        data = data.replace("Enter", "\n");
+//        data = data.replace("Space", " ");
+//        data = data.replace("Comma", ",");
         buf.put(data);
     }
 

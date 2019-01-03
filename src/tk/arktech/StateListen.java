@@ -64,8 +64,9 @@ public class StateListen extends State {
             }
 
             try {
+                var temp = buf.position();
                 buf.rewind();
-                queue.put(mynumber + buf.toString());
+                queue.put(mynumber + buf.subSequence(0,temp).toString());
 //                queue.put("2" + buf.)
             } catch (InterruptedException e) {
                 e.printStackTrace();

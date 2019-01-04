@@ -31,7 +31,7 @@ public class Keylogger implements Runnable {
                 .add(new CommandExecutor(this::stopKeylogger, "exit"));
     }
 
-    public void startListening()
+    private void startListening()
     {
         if(!(context.getState() instanceof StateListen))
         {
@@ -39,7 +39,7 @@ public class Keylogger implements Runnable {
         }
     }
 
-    public void stopListening()
+    private void stopListening()
     {
         if(context.getState() instanceof StateListen)
         {
@@ -47,7 +47,7 @@ public class Keylogger implements Runnable {
         }
     }
 
-    public void stopKeylogger()
+    private void stopKeylogger()
     {
         stopListening();
         flag = false;

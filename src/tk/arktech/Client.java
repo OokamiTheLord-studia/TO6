@@ -1,5 +1,9 @@
 package tk.arktech;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,6 +26,31 @@ public class Client implements Runnable {
 
 
     private void screenshot() {
+        Rectangle screenRect = new Rectangle(0, 0, 0, 0);
+        for (GraphicsDevice gd : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
+            screenRect = screenRect.union(gd.getDefaultConfiguration().getBounds());
+        }
+        BufferedImage capture = null;
+        try {
+            capture = new Robot().createScreenCapture(screenRect);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        /*try {
+            ImageIO.write(capture, "bmp", new File("C:\\temp\\desu.bmp"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            ostream.write(2);
+            ImageIO.write(capture, "png", ostream);
+            //ostream.write("test".getBytes());
+            ostream.write('\0');
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
